@@ -13,6 +13,10 @@ export class TaskManagerServiceService {
     return this.apiServiceService.GET(this.taskManagerUrl);
   }
 
+  getAllParentTask(){
+    return this.apiServiceService.GET(`${this.taskManagerUrl}/parent`);
+  }
+
   saveTask(task){
     return this.apiServiceService.POST(this.taskManagerUrl, task);
   }

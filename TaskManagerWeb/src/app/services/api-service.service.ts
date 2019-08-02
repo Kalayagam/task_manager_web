@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from "@angular
 })
 export class ApiServiceService {
 
-  private readonly repositoryURL: string = "http://localhost:81/api/";
+  private readonly repositoryURL: string = "https://localhost:5001/api/";
 
     private readonly httpOptions = {
         headers: new HttpHeaders({

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TaskManagerServiceService } from "../../services/task-manager-service.service";
+import { TaskManagerServiceService } from "../../../services/task-manager-service.service";
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -31,7 +32,8 @@ export class AddTaskComponent implements OnInit {
     startDate: '',
     endDate: ''
   }
-  constructor(private taskManagerServiceService: TaskManagerServiceService) { }
+  constructor(private taskManagerServiceService: TaskManagerServiceService,
+              private router: Router) { }
 
   ngOnInit() {
     console.log("taskList", this.taskList)
@@ -44,7 +46,7 @@ export class AddTaskComponent implements OnInit {
       this.taskManagerServiceService.saveTask(this.newTask).subscribe(
         (response: [{}]) => {
           this.reset();
-          this.changeTab.emit("view");
+          this.router.navigate(["/task/view"]);
         }
       );
     } else {

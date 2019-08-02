@@ -1,0 +1,27 @@
+<div class="col-md-12 topPadding table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Parent</th>
+        <th>Priority</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of taskList">
+        <td>{{task.taskName}}</td>
+        <td>{{task.parentTaskName}}</td>
+        <td>{{task.priority}}</td>
+        <td>{{task.startDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{task.endDate | date:'dd/MM/yyyy'}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="editTask(task)">Edit</button>
+          <button type="button" class="btn btn-danger leftMargin" (click)="deleteTask(task)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
