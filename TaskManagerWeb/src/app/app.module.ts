@@ -15,6 +15,8 @@ import { ProjectComponent } from './components/project/project.component';
 import { UserComponent } from './components/user/user.component';
 import { TaskComponent } from './components/task/task.component';
 import { ViewTaskComponent } from './components/task/view-task/view-task.component'
+import { ViewProjectComponent } from './components/project/view-project/view-project.component';
+import { ProjectService } from './services/project.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ViewTaskComponent } from './components/task/view-task/view-task.compone
     ProjectComponent,
     UserComponent,
     TaskComponent,
-    ViewTaskComponent
+    ViewTaskComponent,
+    ViewProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { ViewTaskComponent } from './components/task/view-task/view-task.compone
   ],
   providers: [
     ApiServiceService,
-    TaskManagerServiceService
+    TaskManagerServiceService,
+    ProjectService
   ],
   bootstrap: [AppComponent]
 })
