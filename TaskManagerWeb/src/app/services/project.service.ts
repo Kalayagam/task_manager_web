@@ -12,12 +12,12 @@ export class ProjectService {
     return this.apiServiceService.GET(this.projectUrl);
   }
 
-  save(task){
-    return this.apiServiceService.POST(this.projectUrl, task);
+  save(project){
+    return this.apiServiceService.POST(this.projectUrl, project);
   }
 
-  edit(task){
-    return this.apiServiceService.PUT(this.projectUrl, task);
+  edit(project){
+    return this.apiServiceService.PUT(this.projectUrl, project);
   }
 
   delete(id){
