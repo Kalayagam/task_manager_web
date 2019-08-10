@@ -84,6 +84,7 @@ export class AddTaskComponent implements OnInit {
       priority: 5,
       startDate: '',
       endDate: '',
+      isParentTask: false;
     }
   } 
 }
