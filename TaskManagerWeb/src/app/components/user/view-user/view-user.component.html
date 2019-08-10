@@ -12,9 +12,12 @@
           <td>{{user.employeeId}}</td>
           <td>{{user.firstName}}</td>
           <td>{{user.lastName}}</td>
-          <td>
+          <td *ngIf="!selectMode">
             <button type="button" class="btn btn-primary" (click)="editUser(user)">Edit</button>
             <button type="button" class="btn btn-danger leftMargin" (click)="deleteUser(user)">Delete</button>
+          </td>
+          <td *ngIf="selectMode">
+            <button type="button" class="btn btn-primary" (click)="selectUser(user)">Select</button>
           </td>
         </tr>
       </tbody>

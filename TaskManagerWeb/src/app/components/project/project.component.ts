@@ -15,10 +15,8 @@ export class ProjectComponent implements OnInit {
     this.loadProjects();
   }
 
-  private loadProjects() {
-    this.projectService.getAll().subscribe((response: [{}]) => {
-      this.projects = response;
-    });
+  addProject() {
+    this.loadProjects();
   }
 
   deleteProject(project) {
@@ -27,6 +25,12 @@ export class ProjectComponent implements OnInit {
         this.loadProjects();
       }
     );
+  }
+  
+  private loadProjects() {
+    this.projectService.getAll().subscribe((response: [{}]) => {
+      this.projects = response;
+    });
   }
 
 }

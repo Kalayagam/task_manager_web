@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskManagerComponent } from './components/task-manager/task-manager.component';
@@ -19,6 +20,10 @@ import { ViewProjectComponent } from './components/project/view-project/view-pro
 import { ProjectService } from './services/project.service';
 import { ViewUserComponent } from './components/user/view-user/view-user.component';
 import { UserService } from './services/user.service';
+import { AddUserComponent } from './components/user/add-user/add-user.component';
+import { AddProjectComponent } from './components/project/add-project/add-project.component';
+import { ModalComponent } from './components/core/modal/modal.component';
+import { SelectUserComponent } from './components/user/select-user/select-user.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +37,18 @@ import { UserService } from './services/user.service';
     TaskComponent,
     ViewTaskComponent,
     ViewProjectComponent,
-    ViewUserComponent
+    ViewUserComponent,
+    AddUserComponent,
+    AddProjectComponent,
+    ModalComponent,
+    SelectUserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [
     ApiServiceService,
@@ -46,6 +56,9 @@ import { UserService } from './services/user.service';
     ProjectService,
     UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    SelectUserComponent
+  ]
 })
 export class AppModule { }

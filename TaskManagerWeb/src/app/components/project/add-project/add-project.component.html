@@ -1,0 +1,22 @@
+<div class="addProjectComponent">
+  <div class="container col-md-6 offset-md-3">
+      <form (ngSubmit)="saveProject()" #addProjectForm="ngForm">
+        <div class="form-group">
+          <label for="firstName">Project:</label>
+          <input type="text" required ="true" class="form-control" id="projectName" [(ngModel)]="project.projectName" placeholder="Enter First Name" name="FirstName">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Priority:</label>
+          <input type="range" required ="true" class="form-control" id="priority" [(ngModel)]="project.priority" placeholder="Enter Last Name" name="LastName">
+        </div>
+        <div class="form-group">
+          <label for="employeeId">Manager:</label>
+          <input type="text" disabled required ="true" class="form-control" id="manager" [(ngModel)]="selectedUser.firstName" placeholder="Enter Employee Id" name="EmployeeId">
+          <button type="button" class="btn btn-lg btn-outline-primary" (click)="searchUser()">Search</button>   
+        </div>        
+         
+        <button type="submit" class="btn btn-success" [disabled]="!addProjectForm.valid" type="submit">Submit</button>
+        <button *ngIf="mode === 'Add'" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
+      </form>
+    </div>
+</div>

@@ -27,4 +27,7 @@ export class UserComponent implements OnInit {
    })
   }
 
+  successAdd() {
+    this.loadUsers();
+  }
 }

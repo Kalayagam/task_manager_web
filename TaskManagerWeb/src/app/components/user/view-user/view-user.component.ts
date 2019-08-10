@@ -8,7 +8,9 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class ViewUserComponent implements OnInit {
 
   @Input() users: any = [];
+  @Input() selectMode: boolean = false;
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() select: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -18,6 +20,10 @@ export class ViewUserComponent implements OnInit {
   
   deleteUser(user) {
     this.delete.emit(user);
+  }
+
+  selectUser(user) {
+    this.select.emit(user);
   }
 
 }
