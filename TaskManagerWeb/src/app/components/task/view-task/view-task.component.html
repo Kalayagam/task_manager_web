@@ -11,15 +11,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of taskList">
+      <tr *ngFor="let task of tasks">
         <td>{{task.taskName}}</td>
         <td>{{task.parentTaskName}}</td>
         <td>{{task.priority}}</td>
         <td>{{task.startDate | date:'dd/MM/yyyy'}}</td>
         <td>{{task.endDate | date:'dd/MM/yyyy'}}</td>
-        <td>
+        <td *ngIf="!selectMode">
           <button type="button" class="btn btn-primary" (click)="editTask(task)">Edit</button>
           <button type="button" class="btn btn-danger leftMargin" (click)="deleteTask(task)">Delete</button>
+        </td>
+        <td *ngIf="selectMode">
+            <button type="button" class="btn btn-primary" (click)="selectTask(task)">Select</button>
         </td>
       </tr>
     </tbody>

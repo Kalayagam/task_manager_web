@@ -16,9 +16,12 @@
           <td>{{project.numberOfTasksCompleted}}</td>
           <td>{{project.startDate | date:'dd/MM/yyyy'}}</td>
           <td>{{project.endDate | date:'dd/MM/yyyy'}}</td>
-          <td>
+          <td *ngIf="!selectMode">
             <button type="button" class="btn btn-primary" (click)="editProject(project)">Edit</button>
             <button type="button" class="btn btn-danger leftMargin" (click)="deleteProject(project)">Delete</button>
+          </td>
+          <td *ngIf="selectMode">
+            <button type="button" class="btn btn-primary" (click)="selectProject(project)">Select</button>
           </td>
         </tr>
       </tbody>

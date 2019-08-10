@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TaskManagerServiceService } from 'src/app/services/task-manager-service.service';
 
 @Component({
@@ -8,25 +8,32 @@ import { TaskManagerServiceService } from 'src/app/services/task-manager-service
 })
 export class ViewTaskComponent implements OnInit {
 
-  @Input() taskList: any;
+  @Input() tasks: any;
+  @Input() selectMode: boolean = false;
+  @Output() select: EventEmitter<any> = new EventEmitter<any>();
+  
   constructor(private taskManagerServiceService: TaskManagerServiceService) { }
 
   ngOnInit() {
-    this.loadTaskList();
-  }
+    this.loadTasks();
+  }  
 
-  loadTaskList(){
-    this.taskManagerServiceService.getAllTask().subscribe(
-      (response: [{}]) => {
-        this.taskList = response;
-      }
-    );
+  selectTask(task) {
+    this.select.emit(task);
   }
 
   deleteTask(task){
     this.taskManagerServiceService.deleteTask(task.id).subscribe(
       (response: [{}]) => {
-        this.loadTaskList();
+        this.loadTasks();
+      }
+    );
+  }
+
+  loadTasks(){
+    this.taskManagerServiceService.getAllTask().subscribe(
+      (response: [{}]) => {
+        this.tasks = response;
       }
     );
   }

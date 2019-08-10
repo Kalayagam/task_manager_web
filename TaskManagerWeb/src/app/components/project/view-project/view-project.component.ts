@@ -8,11 +8,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ViewProjectComponent implements OnInit {
 
   @Input() projects: any = [];
+  @Input() selectMode: boolean = false;
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
-  @Output() edit = new EventEmitter();
+  @Output() edit: EventEmitter<any> = new EventEmitter<any>();  
+  @Output() select: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectProject(project) {
+    this.select.emit(project);
   }
 
   editProject(project) {

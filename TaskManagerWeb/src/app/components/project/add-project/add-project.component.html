@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
           <label for="employeeId">Manager:</label>
-          <input type="text" disabled required ="true" class="form-control" id="manager" [(ngModel)]="selectedUser.firstName" placeholder="Enter Employee Id" name="EmployeeId">
+          <input type="text" readonly required ="true" class="form-control" id="manager" [(ngModel)]="selectedUser.firstName" placeholder="Enter Employee Id" name="EmployeeId">
           <button type="button" class="btn btn-lg btn-outline-primary" (click)="searchUser()">Search</button>   
         </div>        
          

@@ -2,36 +2,43 @@
     <div class="container col-md-6 offset-md-3">
         <form (ngSubmit)="saveTask()" #addTaskForm="ngForm">
           <div class="form-group">
-            <label for="taskName">Task Name:</label>
-            <input type="text" required ="true" class="form-control" id="taskName" [(ngModel)]="newTask.taskName" placeholder="Enter Task" name="taskName">
+            <label for="projectName">Project:</label>
+            <input type="text" required ="true" readonly class="form-control" id="projectName" [(ngModel)]="selectedProject.projectName" placeholder="Select Project" name="projectName">
+            <button type="button" class="btn btn-lg btn-outline-primary" (click)="searchProject()">Search</button>   
           </div>
           <div class="form-group">
-            <label for="parentName">Parent Task Name:</label>            
-            <select class="custom-select" name="parentName" [(ngModel)]="newTask.parentId">
-              <ng-container *ngFor = "let task of taskList">
-                  <option *ngIf="!(newTask && newTask.id === task.id)" [value]="task.id">{{task.taskName}}</option>
-              </ng-container>
-            </select>
+            <label for="taskName">Task Name:</label>
+            <input type="text" required ="true" class="form-control" id="taskName" [(ngModel)]="task.taskName" placeholder="Enter Task" name="taskName">
+          </div>
+          <div class="form-group">
+            <label for="parentName">Parent Task Name:</label> 
+            <input type="text" readonly required ="true" class="form-control" id="parentName" [(ngModel)]="selectedParentTask.taskName" placeholder="Select User" name="ParentTask">
+            <button type="button" class="btn btn-lg btn-outline-primary" (click)="searchParentTask()">Search</button>
           </div>   
           <div class="form-group">
             <label for="priority">Priority:</label>
             <input type="range" class="form-control"
               name="priority"
               min="1" max="30" value="1" class="slider" 
-              [(ngModel)]="newTask.priority" id="priority"
-              [title]=newTask.priority>
+              [(ngModel)]="task.priority" id="priority"
+              [title]=task.priority>
           </div>   
           <div class="form-group">
             <label for="startDate">Start Date:</label>
-            <input type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [ngModel]="newTask.startDate | date:'yyyy-MM-dd'" (ngModelChange)="newTask.startDate = $event">  
+            <input type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [ngModel]="task.startDate | date:'yyyy-MM-dd'" (ngModelChange)="task.startDate = $event">  
           </div>  
           <div class="form-group">
             <label for="endDate">End Date:</label>
-            <input type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [ngModel]="newTask.endDate | date:'yyyy-MM-dd'" (ngModelChange)="newTask.endDate = $event">  
+            <input type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [ngModel]="task.endDate | date:'yyyy-MM-dd'" (ngModelChange)="task.endDate = $event">  
+          </div>  
+          <div class="form-group">
+            <label for="user">User:</label>
+            <input type="text" readonly required ="true" class="form-control" id="user" [(ngModel)]="selectedUser.firstName" placeholder="Select User" name="User">
+            <button type="button" class="btn btn-lg btn-outline-primary" (click)="searchUser()">Search</button>   
           </div>      
            
           <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">Submit</button>
-          <button *ngIf="showResetButton" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
+          <button *ngIf="mode =='Add'" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
         </form>
       </div>
 </div>

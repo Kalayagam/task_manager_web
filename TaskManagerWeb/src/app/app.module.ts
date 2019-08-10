@@ -22,8 +22,9 @@ import { ViewUserComponent } from './components/user/view-user/view-user.compone
 import { UserService } from './services/user.service';
 import { AddUserComponent } from './components/user/add-user/add-user.component';
 import { AddProjectComponent } from './components/project/add-project/add-project.component';
-import { ModalComponent } from './components/core/modal/modal.component';
 import { SelectUserComponent } from './components/user/select-user/select-user.component';
+import { SelectProjectComponent } from './components/project/select-project/select-project.component';
+import { SelectTaskComponent } from './components/task/select-task/select-task.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,9 @@ import { SelectUserComponent } from './components/user/select-user/select-user.c
     ViewUserComponent,
     AddUserComponent,
     AddProjectComponent,
-    ModalComponent,
-    SelectUserComponent
+    SelectUserComponent,
+    SelectProjectComponent,
+    SelectTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,9 @@ import { SelectUserComponent } from './components/user/select-user/select-user.c
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    SelectUserComponent
+    SelectUserComponent,
+    SelectProjectComponent,
+    SelectTaskComponent
   ]
 })
 export class AppModule { }

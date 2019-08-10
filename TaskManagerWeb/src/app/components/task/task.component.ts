@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TaskManagerServiceService } from 'src/app/services/task-manager-service.service';
 
 @Component({
   selector: 'app-task',
@@ -7,19 +6,8 @@ import { TaskManagerServiceService } from 'src/app/services/task-manager-service
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
+ 
+  constructor() { }
 
-  @Input() taskList: any;
-  constructor(private taskManagerServiceService: TaskManagerServiceService) { }
-
-  ngOnInit() {
-    this.loadTaskList();
-  }
-
-  loadTaskList(){
-    this.taskManagerServiceService.getAllParentTask().subscribe(
-      (response: [{}]) => {
-        this.taskList = response;
-      }
-    );
-  }
+  ngOnInit() { }
 }
