@@ -1,5 +1,12 @@
-<app-add-project (add)="addProject()"></app-add-project>
+<app-add-project 
+    [mode]="mode" 
+    [project]="selectedProject" 
+    (add)="addProject()" 
+    (edit)="successEdit()"
+    (discard)="discard()">
+</app-add-project>
 <app-view-project 
     [projects]="projects"
-    (delete)="deleteProject($event)">
+    (delete)="deleteProject($event)"
+    (edit)="editProject($event)">
 </app-view-project>

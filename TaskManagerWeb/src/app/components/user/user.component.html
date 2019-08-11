@@ -1,2 +1,8 @@
-<app-add-user [mode]="mode" [user]="selectedUser" (add)="successAdd()" (edit)="successEdit()"></app-add-user>
+<app-add-user 
+    [mode]="mode" 
+    [user]="selectedUser" 
+    (add)="successAdd()" 
+    (edit)="successEdit()"
+    (discard)="discard()">
+</app-add-user>
 <app-view-user [users]="users" (delete)="deleteUser($event)" (edit)="editUser($event)"></app-view-user>

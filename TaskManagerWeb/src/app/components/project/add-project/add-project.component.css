@@ -1,0 +1,7 @@
+.addProjectComponent label {
+    font-size: 20px;
+}
+
+.addProjectComponent .action {
+    text-align: right;
+}

@@ -35,6 +35,11 @@ export class UserComponent implements OnInit {
     this.mode = 'edit';
   }
 
+  discard() {
+    this.mode = 'Add';
+    this.selectedUser = {}
+  }
+
   successAdd() {
     this.loadUsers();
   }

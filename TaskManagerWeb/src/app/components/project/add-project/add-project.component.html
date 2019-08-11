@@ -1,22 +1,44 @@
 <div class="addProjectComponent">
-  <div class="container col-md-6 offset-md-3">
+  <div class="container col-md-10 offset-md-1">
       <form (ngSubmit)="saveProject()" #addProjectForm="ngForm">
-        <div class="form-group">
-          <label for="firstName">Project:</label>
-          <input type="text" required ="true" class="form-control" id="projectName" [(ngModel)]="project.projectName" placeholder="Enter First Name" name="FirstName">
+        <div class="form-group row">
+          <label class="col-md-2" for="firstName">Project:</label>
+          <div class="col-md-10">
+              <input type="text" required ="true" class="form-control" id="projectName" [(ngModel)]="project.projectName" placeholder="Enter First Name" name="FirstName">
+          </div>          
         </div>
-        <div class="form-group">
-          <label for="lastName">Priority:</label>
-          <input type="range" required ="true" class="form-control" id="priority" [(ngModel)]="project.priority" placeholder="Enter Last Name" name="LastName">
+        <div class="form-group row">
+          <div class="col-md-2"></div>
+          <div class="col-md-1">
+            <input type="checkbox" required ="false" class="form-control" id="showDateRange" [(ngModel)]="showDateRange"  name="ShowDateRange">
+          </div>          
+          <label class="col-md-3"for="firstName">Set Start and End Date</label> 
+          <div class="col-md-3">
+            <input [disabled]="!showDateRange" type="date" [required]="showDateRange" class="form-control" id="startDate" [(ngModel)]="project.startDate"  name="StartDate">
+          </div>
+          <div class="col-md-3">
+            <input [disabled]="!showDateRange" type="date" [required]="showDateRange" class="form-control" id="endDate" [(ngModel)]="project.endDate"  name="EndDate">           
+          </div>
         </div>
-        <div class="form-group">
-          <label for="employeeId">Manager:</label>
-          <input type="text" readonly required ="true" class="form-control" id="manager" [(ngModel)]="selectedUser.firstName" placeholder="Enter Employee Id" name="EmployeeId">
-          <button type="button" class="btn btn-lg btn-outline-primary" (click)="searchUser()">Search</button>   
-        </div>        
-         
-        <button type="submit" class="btn btn-success" [disabled]="!addProjectForm.valid" type="submit">Submit</button>
-        <button *ngIf="mode === 'Add'" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
-      </form>
+        <div class="form-group row">
+          <label class="col-md-2" for="lastName">Priority:</label>
+          <div class="col-md-10">
+              <input type="range" required ="true" class="form-control" id="priority" [(ngModel)]="project.priority" placeholder="Enter Last Name" name="LastName">
+          </div>          
+        </div>
+        <div class="form-group row">
+          <label class="col-md-2" for="employeeId">Manager:</label>
+          <div class="col-md-8">
+              <input type="text" readonly required ="true" class="form-control" id="manager" [(ngModel)]="project.userName" placeholder="Enter Employee Id" name="EmployeeId">
+          </div>          
+          <button type="button" class="col-md-2 btn btn-sm btn-outline-primary" (click)="searchUser()">Search</button>   
+        </div> 
+        <div class="row">
+          <div class="action">
+            <button type="submit" class="btn btn-success" [disabled]="!addProjectForm.valid" type="submit">{{submitBtnText}}</button>
+            <button type="button" class="btn btn-primary leftMargin" (click)="cancel()">{{resetBtnText}}</button>          
+          </div>
+        </div>       
+       </form>
     </div>
 </div>

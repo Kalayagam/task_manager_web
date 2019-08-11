@@ -10,13 +10,21 @@ import { Router } from '@angular/router';
 export class AddUserComponent implements OnInit {
   @Input() user: any;
   @Input() set mode(value) {
+    this._mode = value;
     this.initializeMode(value);
   };
   @Output() add: EventEmitter<any> = new EventEmitter<any>();
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() discard: EventEmitter<any> = new EventEmitter<any>();
 
   submitBtnText: string = 'Add'
-  showResetButton: boolean = true;
+  resetBtnText: string = 'Reset';
+  private _mode: string;
+
+  get mode() {
+    return this._mode;
+  }
+
   constructor(private userService: UserService) { }  
 
   ngOnInit() {
@@ -27,7 +35,8 @@ export class AddUserComponent implements OnInit {
     if(this.mode == 'Add') {
       this.userService.save(this.user).subscribe(
         (response: [{}]) => {
-          this.add.emit()
+          this.add.emit();
+          this.initializeMode('Add');
         }
       );
     } else {
@@ -39,6 +48,23 @@ export class AddUserComponent implements OnInit {
     }
   }
 
+  cancel() {
+    this.discard.emit();
+    this.initializeMode('Add');
+  }
+  
+  private initializeMode(value: any) {
+    if (!value || value == 'Add') {
+      this.reset();
+      this.resetBtnText = 'Reset';
+      this.submitBtnText = 'Add';
+    }
+    else {
+      this.submitBtnText = 'Update';
+      this.resetBtnText = 'Cancel';
+    }
+  }
+
   private reset() {
     this.user = {
       firstName: '',
@@ -47,15 +73,4 @@ export class AddUserComponent implements OnInit {
     };
   }
 
-  private initializeMode(value: any) {
-    if (!value || value == 'Add') {
-      this.reset();
-      this.showResetButton = true;
-      this.submitBtnText = 'Add';
-    }
-    else {
-      this.submitBtnText = 'Update';
-      this.showResetButton = false;
-    }
-  }
 }

@@ -9,14 +9,19 @@ import { ProjectService } from '../../services/project.service';
 export class ProjectComponent implements OnInit {
 
   projects: any = [];
+  selectedProject: any = {};
+  mode: string;
+
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
     this.loadProjects();
+    this.resetMode();
   }
 
   addProject() {
     this.loadProjects();
+    this.resetMode();
   }
 
   deleteProject(project) {
@@ -25,6 +30,25 @@ export class ProjectComponent implements OnInit {
         this.loadProjects();
       }
     );
+  }
+
+  editProject(project) {
+    this.selectedProject = project;
+    this.mode = 'edit';
+  }
+
+  discard() {
+    this.mode = 'Add';
+    this.selectedProject = {}
+  }
+
+  successEdit() {
+    this.loadProjects();
+    this.resetMode();
+  }
+
+  private resetMode() {
+    this.mode = 'Add';
   }
   
   private loadProjects() {
