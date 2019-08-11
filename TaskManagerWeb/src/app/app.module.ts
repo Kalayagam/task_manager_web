@@ -25,6 +25,8 @@ import { AddProjectComponent } from './components/project/add-project/add-projec
 import { SelectUserComponent } from './components/user/select-user/select-user.component';
 import { SelectProjectComponent } from './components/project/select-project/select-project.component';
 import { SelectTaskComponent } from './components/task/select-task/select-task.component';
+import { SearchUserPipe } from './pipes/search-user.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { SelectTaskComponent } from './components/task/select-task/select-task.c
     AddProjectComponent,
     SelectUserComponent,
     SelectProjectComponent,
-    SelectTaskComponent
+    SelectTaskComponent,
+    SearchUserPipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

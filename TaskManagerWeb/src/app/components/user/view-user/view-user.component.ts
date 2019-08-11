@@ -13,6 +13,10 @@ export class ViewUserComponent implements OnInit {
   @Output() select: EventEmitter<any> = new EventEmitter<any>();
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
 
+  searchText: string = null;
+  sortBy: string = 'employeeId';
+  sortDirection: number = 1;
+
   constructor() { }
 
   ngOnInit() {

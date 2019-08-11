@@ -1,4 +1,16 @@
 <div class="col-md-12 topPadding table-responsive">
+    <div class="form-group row">
+        <div class="col-md-6" >
+          <input type="text" [(ngModel)]="searchText" 
+                 class="form-control" placeholder="Search By User" />
+        </div>
+        <label name="SortUser" class="col-md-1">Sort:</label>
+        <div class="col-md-4 btn-group">
+            <button class="btn btn-outline-primary" (click)="sortBy = 'firstName'" type="button" name="sortByFirstName">First Name</button>
+            <button class="btn btn-outline-primary" (click)="sortBy = 'lastName'" type="button" name="sortByLastName">Last Name</button>
+            <button class="btn btn-outline-primary" (click)="sortBy = 'employeeId'" type="button" name="sortById">Id</button>
+        </div>               
+      </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -8,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users | searchUser : searchText | orderBy: { property: sortBy, direction: sortDirection }">
           <td>{{user.employeeId}}</td>
           <td>{{user.firstName}}</td>
           <td>{{user.lastName}}</td>
