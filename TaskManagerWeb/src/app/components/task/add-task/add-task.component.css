@@ -35,3 +35,11 @@
     background: #4CAF50;
     cursor: pointer;
   }
+
+  .addTaskComponent .action {
+    text-align: right;
+  }
+
+  .addTaskComponent label {
+    font-size: 20px;
+  }

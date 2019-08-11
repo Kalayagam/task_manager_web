@@ -14,8 +14,8 @@
           <input type="text" required ="true" class="form-control" id="employeeId" [(ngModel)]="user.employeeId" placeholder="Enter Employee Id" name="EmployeeId">
         </div>      
          
-        <button type="submit" class="btn btn-success" [disabled]="!addUserForm.valid" type="submit">Submit</button>
-        <button *ngIf="mode === 'Add'" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
+        <button type="submit" class="btn btn-success" [disabled]="!addUserForm.valid" type="submit">{{submitBtnText}}</button>
+        <button *ngIf="showResetButton" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
       </form>
     </div>
 </div>

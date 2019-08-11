@@ -11,6 +11,7 @@ export class ViewUserComponent implements OnInit {
   @Input() selectMode: boolean = false;
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
   @Output() select: EventEmitter<any> = new EventEmitter<any>();
+  @Output() edit: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -24,6 +25,10 @@ export class ViewUserComponent implements OnInit {
 
   selectUser(user) {
     this.select.emit(user);
+  }
+
+  editUser(user) {
+    this.edit.emit(user)
   }
 
 }

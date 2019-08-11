@@ -22,6 +22,15 @@ export class ViewTaskComponent implements OnInit {
     this.select.emit(task);
   }
 
+  endTask(task) {
+    task.status = 1;
+    this.taskManagerServiceService.editTask(task).subscribe(
+      () => {
+        this.loadTasks();
+      }
+    );
+  }
+
   deleteTask(task){
     this.taskManagerServiceService.deleteTask(task.id).subscribe(
       (response: [{}]) => {

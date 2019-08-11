@@ -1,49 +1,66 @@
 <div class="addTaskComponent">
-    <div class="container col-md-6 offset-md-3">
+    <div class="container col-md-10 offset-md-1">
         <form (ngSubmit)="saveTask()" #addTaskForm="ngForm">
-          <div class="form-group">
-            <label for="projectName">Project:</label>
-            <input [disabled]="task.isParentTask" type="text" required ="true" readonly class="form-control" id="projectName" [(ngModel)]="selectedProject.projectName" placeholder="Select Project" name="projectName">
-            <button [disabled]="task.isParentTask" type="button" class="btn btn-lg btn-outline-primary" (click)="searchProject()">Search</button>   
-          </div>
-          <div class="form-group">
-            <label for="taskName">Task Name:</label>
-            <input type="text" required ="true" class="form-control" id="taskName" [(ngModel)]="task.taskName" placeholder="Enter Task" name="taskName">
+          <div class="form-group row">
+            <label class="col-md-2" for="projectName">Project:</label>
+            <div class="col-md-7">
+              <input [disabled]="task.isParentTask" type="text" required ="true" readonly class="form-control" id="projectName" [(ngModel)]="selectedProject.projectName" placeholder="Select Project" name="projectName">              
+            </div>            
+            <button [disabled]="task.isParentTask" type="button" class="col-md-2 btn btn-sm btn-outline-primary" (click)="searchProject()">Search</button>                            
+            </div>
+          <div class="form-group row">
+            <label class="col-md-2" for="taskName">Task Name:</label>
+            <div class="col-md-9">
+                <input type="text" required ="true" class="form-control" id="taskName" [(ngModel)]="task.taskName" placeholder="Enter Task" name="taskName">
+            </div>            
           </div>
           <div class="form-group row">
-              <div class="col-md-1"></div>
-              <input type="checkbox" required ="true" class="col-md-1 form-control" id="isParentTask" [(ngModel)]="task.isParentTask"  name="isParentTask">
-              <label class="col-md-3" for="taskName">Parent Task</label>              
+            <div class="col-md-2"></div>
+            <input type="checkbox" class="col-md-1 form-control" id="isParentTask" [(ngModel)]="task.isParentTask"  name="isParentTask">
+            <label class="col-md-3" for="taskName">Parent Task</label>              
           </div>
-          <div class="form-group">
-            <label for="parentName">Parent Task Name:</label> 
-            <input [disabled]="task.isParentTask" type="text" readonly required ="true" class="form-control" id="parentName" [(ngModel)]="selectedParentTask.taskName" placeholder="Select User" name="ParentTask">
-            <button [disabled]="task.isParentTask" type="button" class="btn btn-lg btn-outline-primary" (click)="searchParentTask()">Search</button>
+          <div class="form-group row">
+            <label class="col-md-2" for="parentName">Parent Task:</label> 
+            <div class="col-md-7">
+              <input [disabled]="task.isParentTask" type="text" readonly required ="true" class="form-control" id="parentName" [(ngModel)]="selectedParentTask.taskName" placeholder="Select User" name="ParentTask">
+            </div>              
+            <button [disabled]="task.isParentTask" type="button" class="col-md-2 btn btn-sm btn-outline-primary" (click)="searchParentTask()">Search</button>
           </div>   
-          <div class="form-group">
-            <label for="priority">Priority:</label>
-            <input [disabled]="task.isParentTask" type="range" class="form-control"
-              name="priority"
-              min="1" max="30" value="1" class="slider" 
-              [(ngModel)]="task.priority" id="priority"
-              [title]=task.priority>
+          <div class="form-group row">
+            <label class="col-md-2" for="priority">Priority:</label>
+            <div class="col-md-9">
+                <input [disabled]="task.isParentTask" type="range" class="form-control"
+                name="priority"
+                min="1" max="30" value="1" class="slider" 
+                [(ngModel)]="task.priority" id="priority"
+                [title]=task.priority>
+            </div>            
           </div>   
-          <div class="form-group">
-            <label for="startDate">Start Date:</label>
-            <input [disabled]="task.isParentTask" type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [ngModel]="task.startDate | date:'yyyy-MM-dd'" (ngModelChange)="task.startDate = $event">  
-          </div>  
-          <div class="form-group">
-            <label for="endDate">End Date:</label>
-            <input [disabled]="task.isParentTask" type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [ngModel]="task.endDate | date:'yyyy-MM-dd'" (ngModelChange)="task.endDate = $event">  
-          </div>  
-          <div class="form-group">
-            <label for="user">User:</label>
-            <input [disabled]="task.isParentTask" type="text" readonly required ="true" class="form-control" id="user" [(ngModel)]="selectedUser.firstName" placeholder="Select User" name="User">
-            <button [disabled]="task.isParentTask" type="button" class="btn btn-lg btn-outline-primary" (click)="searchUser()">Search</button>   
-          </div>      
-           
-          <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">Submit</button>
-          <button *ngIf="mode =='Add'" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
-        </form>
+          <div class="form-group row">
+            <label class="col-md-2" for="startDate">Start Date:</label>
+            <div class="col-md-3">
+                <input [disabled]="task.isParentTask" type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [ngModel]="task.startDate | date:'yyyy-MM-dd'" (ngModelChange)="task.startDate = $event">  
+            </div>
+            <div class="col-md-1"></div> 
+            <label class="col-md-2" for="endDate">End Date:</label>
+            <div class="col-md-3">
+              <input [disabled]="task.isParentTask" type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [ngModel]="task.endDate | date:'yyyy-MM-dd'" (ngModelChange)="task.endDate = $event">           
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-2" for="user">User:</label>
+            <div class="col-md-7">
+              <input [disabled]="task.isParentTask" type="text" readonly required ="true" class="form-control" id="user" [(ngModel)]="selectedUser.firstName" placeholder="Select User" name="User">
+            </div>
+            <button [disabled]="task.isParentTask" type="button" class="col-md-2 btn btn-sm btn-outline-primary" (click)="searchUser()">Search</button>   
+          </div>    
+          <div class="row"></div>  
+          <div class="row">
+            <div class="action col-md-11">
+              <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">Submit</button>
+              <button *ngIf="mode =='Add'" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>            
+            </div>
+          </div>
+          </form>
       </div>
 </div>

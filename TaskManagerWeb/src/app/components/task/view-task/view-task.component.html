@@ -19,7 +19,7 @@
         <td>{{task.endDate | date:'dd/MM/yyyy'}}</td>
         <td *ngIf="!selectMode">
           <button type="button" class="btn btn-primary" (click)="editTask(task)">Edit</button>
-          <button type="button" class="btn btn-danger leftMargin" (click)="deleteTask(task)">Delete</button>
+          <button type="button" class="btn btn-danger leftMargin" (click)="endTask(task)">End Task</button>
         </td>
         <td *ngIf="selectMode">
             <button type="button" class="btn btn-primary" (click)="selectTask(task)">Select</button>

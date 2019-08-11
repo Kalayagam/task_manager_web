@@ -9,10 +9,13 @@ import { UserService } from '../../services/user.service';
 export class UserComponent implements OnInit {
 
   users: any = [];
+  selectedUser: any = {};
+  mode: string;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
       this.loadUsers();
+      this.resetMode();
   }
 
   private loadUsers() {
@@ -27,7 +30,21 @@ export class UserComponent implements OnInit {
    })
   }
 
+  editUser(user) {
+    this.selectedUser = user;
+    this.mode = 'edit';
+  }
+
   successAdd() {
     this.loadUsers();
+  }
+
+  successEdit() {
+    this.loadUsers();
+    this.resetMode();
+  }
+
+  private resetMode() {
+    this.mode = 'Add';
   }
 }
