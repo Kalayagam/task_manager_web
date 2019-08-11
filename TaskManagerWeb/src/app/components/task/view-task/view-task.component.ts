@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TaskManagerServiceService } from 'src/app/services/task-manager-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-task',
@@ -12,7 +13,8 @@ export class ViewTaskComponent implements OnInit {
   @Input() selectMode: boolean = false;
   @Output() select: EventEmitter<any> = new EventEmitter<any>();
   
-  constructor(private taskManagerServiceService: TaskManagerServiceService) { }
+  constructor(private taskManagerServiceService: TaskManagerServiceService,
+              private router: Router) { }
 
   ngOnInit() {
     this.loadTasks();
@@ -29,6 +31,11 @@ export class ViewTaskComponent implements OnInit {
         this.loadTasks();
       }
     );
+  }
+
+  editTask(task) {
+    this.taskManagerServiceService.selectedTask = task;  
+    this.router.navigate(["/task"], { queryParams: { mode: 'edit' } });  
   }
 
   deleteTask(task){

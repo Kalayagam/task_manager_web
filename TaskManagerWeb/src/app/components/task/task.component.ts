@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task',
@@ -7,7 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TaskComponent implements OnInit {
  
-  constructor() { }
+  mode: string = 'Add'
+  constructor(private route: ActivatedRoute) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.mode = this.route.snapshot.queryParams['mode'] || 'Add';
+   }
 }

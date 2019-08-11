@@ -4,7 +4,7 @@
           <div class="form-group row">
             <label class="col-md-2" for="projectName">Project:</label>
             <div class="col-md-7">
-              <input [disabled]="task.isParentTask" type="text" required ="true" readonly class="form-control" id="projectName" [(ngModel)]="selectedProject.projectName" placeholder="Select Project" name="projectName">              
+              <input [disabled]="task.isParentTask" type="text" required ="true" readonly class="form-control" id="projectName" [(ngModel)]="task.projectName" placeholder="Select Project" name="projectName">              
             </div>            
             <button [disabled]="task.isParentTask" type="button" class="col-md-2 btn btn-sm btn-outline-primary" (click)="searchProject()">Search</button>                            
             </div>
@@ -16,13 +16,13 @@
           </div>
           <div class="form-group row">
             <div class="col-md-2"></div>
-            <input type="checkbox" class="col-md-1 form-control" id="isParentTask" [(ngModel)]="task.isParentTask"  name="isParentTask">
+            <input type="checkbox" required="false" class="col-md-1 form-control" id="isParentTask" [(ngModel)]="task.isParentTask"  name="isParentTask">
             <label class="col-md-3" for="taskName">Parent Task</label>              
           </div>
           <div class="form-group row">
             <label class="col-md-2" for="parentName">Parent Task:</label> 
             <div class="col-md-7">
-              <input [disabled]="task.isParentTask" type="text" readonly required ="true" class="form-control" id="parentName" [(ngModel)]="selectedParentTask.taskName" placeholder="Select User" name="ParentTask">
+              <input [disabled]="task.isParentTask" type="text" readonly required ="true" class="form-control" id="parentName" [(ngModel)]="task.parentTaskName" placeholder="Select User" name="ParentTask">
             </div>              
             <button [disabled]="task.isParentTask" type="button" class="col-md-2 btn btn-sm btn-outline-primary" (click)="searchParentTask()">Search</button>
           </div>   
@@ -50,15 +50,15 @@
           <div class="form-group row">
             <label class="col-md-2" for="user">User:</label>
             <div class="col-md-7">
-              <input [disabled]="task.isParentTask" type="text" readonly required ="true" class="form-control" id="user" [(ngModel)]="selectedUser.firstName" placeholder="Select User" name="User">
+              <input [disabled]="task.isParentTask" type="text" readonly required ="true" class="form-control" id="user" [(ngModel)]="task.userName" placeholder="Select User" name="User">
             </div>
             <button [disabled]="task.isParentTask" type="button" class="col-md-2 btn btn-sm btn-outline-primary" (click)="searchUser()">Search</button>   
           </div>    
           <div class="row"></div>  
           <div class="row">
             <div class="action col-md-11">
-              <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">Submit</button>
-              <button *ngIf="mode =='Add'" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>            
+              <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">{{submitBtnText}}</button>
+              <button type="button" class="btn btn-primary leftMargin" (click)="cancel()">{{resetBtnText}}</button>            
             </div>
           </div>
           </form>

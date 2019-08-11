@@ -5,6 +5,7 @@ import { ApiServiceService } from "./api-service.service";
 })
 export class TaskManagerServiceService {
 
+  selectedTask: any = {};
   constructor(private apiServiceService: ApiServiceService) { }
 
   private readonly taskManagerUrl: string = "taskmanager";

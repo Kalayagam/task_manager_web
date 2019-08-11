@@ -13,31 +13,36 @@ import { SelectTaskComponent } from '../select-task/select-task.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class AddTaskComponent implements OnInit {
-  @Input() mode: string = 'Add';
-  @Input() task: any = {};
+  @Input() set mode(value) {
+    this._mode = value;
+    this.initializeMode(value);
+  };
+  @Input() task: any = {};  
   
-  selectedParentTask: any = {};
-  selectedProject: any = {};
-  selectedUser: any = {};
   modalOptions: NgbModalOptions = {
     windowClass: 'modal-medium'
+  }
+  submitBtnText: string = 'Add'
+  resetBtnText: string = 'Reset';
+  private _mode: string;
+
+  get mode() {
+    return this._mode;
   }
 
   constructor(private taskManagerServiceService: TaskManagerServiceService,
               private router: Router,
               private modalService: NgbModal) { }
 
-  ngOnInit() {
-    if(this.mode === 'Add') {
-      this.reset();
-    } 
+  ngOnInit() {    
+   this.initializeMode(this.mode);
   }
 
   searchParentTask() {
     const modalRef = this.modalService.open(SelectTaskComponent, this.modalOptions);
     
     modalRef.result.then((parentTask) => {
-      this.selectedParentTask = parentTask;
+      this.task.parentTaskName = parentTask.taskName;
       this.task.parentId = parentTask.id;
     }, () => {});
   }
@@ -46,7 +51,7 @@ export class AddTaskComponent implements OnInit {
     const modalRef = this.modalService.open(SelectProjectComponent, this.modalOptions);
     
     modalRef.result.then((project) => {
-      this.selectedProject = project;
+      this.task.projectName = project.projectName;
       this.task.projectId = project.id;
     }, () => {});
   }
@@ -55,7 +60,7 @@ export class AddTaskComponent implements OnInit {
     const modalRef = this.modalService.open(SelectUserComponent, this.modalOptions);
     
     modalRef.result.then((user) => {
-      this.selectedUser = user;
+      this.task.userName = `${user.firstName} ${user.lastName}`;
       this.task.userId = user.id;
     }, () => {});
   }
@@ -76,8 +81,16 @@ export class AddTaskComponent implements OnInit {
     }   
   }
 
+  cancel() {
+    if (!this.mode || this.mode == 'Add') {
+      this.reset();
+    } else {
+      this.goToViewTask();
+    }
+  }
+
   private goToViewTask(){
-    this.reset();
+    this.initializeMode('Add');
     this.router.navigate(["/task/view"]);
   }
 
@@ -91,4 +104,20 @@ export class AddTaskComponent implements OnInit {
       isParentTask: false
     }
   } 
+
+  private initializeMode(value: any) {
+    if (!value || value == 'Add') {
+      this.reset();
+      this.resetBtnText = 'Reset';
+      this.submitBtnText = 'Add';
+      this.taskManagerServiceService.selectedTask = {};
+    }
+    else {
+      this.submitBtnText = 'Update';
+      this.resetBtnText = 'Cancel';
+      if(this.taskManagerServiceService.selectedTask) {
+        this.task = this.taskManagerServiceService.selectedTask;
+      }
+    }
+  }
 }

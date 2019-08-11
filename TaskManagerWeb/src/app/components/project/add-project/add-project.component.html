@@ -14,10 +14,10 @@
           </div>          
           <label class="col-md-3"for="firstName">Set Start and End Date</label> 
           <div class="col-md-3">
-            <input [disabled]="!showDateRange" type="date" [required]="showDateRange" class="form-control" id="startDate" [(ngModel)]="project.startDate"  name="StartDate">
+            <input [disabled]="!showDateRange" type="date" [required]="showDateRange" class="form-control" id="startDate" [ngModel]="project.startDate | date:'yyyy-MM-dd'" (ngModelChange)="project.startDate = $event" name="StartDate">
           </div>
           <div class="col-md-3">
-            <input [disabled]="!showDateRange" type="date" [required]="showDateRange" class="form-control" id="endDate" [(ngModel)]="project.endDate"  name="EndDate">           
+            <input [disabled]="!showDateRange" type="date" [required]="showDateRange" class="form-control" id="endDate" [ngModel]="project.endDate | date:'yyyy-MM-dd'" (ngModelChange)="project.endDate = $event" name="EndDate">           
           </div>
         </div>
         <div class="form-group row">
