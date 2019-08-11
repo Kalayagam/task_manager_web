@@ -5,7 +5,6 @@ import { FormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TaskManagerComponent } from './components/task-manager/task-manager.component';
 import { AddTaskComponent } from './components/task/add-task/add-task.component';
 import { SearchFilter } from './pipes/search-filter';
 
@@ -32,7 +31,6 @@ import { ToolbarComponent } from './components/core/toolbar/toolbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TaskManagerComponent,
     AddTaskComponent,
     SearchFilter,
     NavBarComponent,
