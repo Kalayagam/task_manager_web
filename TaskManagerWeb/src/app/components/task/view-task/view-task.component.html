@@ -1,4 +1,18 @@
 <div class="col-md-12 topPadding table-responsive">
+  <div class="row">
+    <label class="col-md-1" for="projectName">Project:</label>
+    <div class="col-md-4">
+      <input type="text" readonly class="form-control" id="projectName" [(ngModel)]="searchText" placeholder="Select Project" name="projectName">              
+    </div>            
+    <button type="button" class="col-md-2 btn btn-sm btn-outline-primary" (click)="searchProject()">Search</button>    
+  </div> 
+  <br> 
+  <app-toolbar 
+        [hideSearch]="true"
+        [columns]="toolbarColumns" 
+        (search)="searchText = $event" 
+        (sortBy)="sortBy = $event">
+  </app-toolbar>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,7 +25,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of tasks">
+      <tr *ngFor="let task of tasks |
+                  search : { searchText: searchText, propertyName: searchBy } | 
+                  orderBy: { property: sortBy, direction: sortDirection }">
         <td>{{task.taskName}}</td>
         <td>{{task.parentTaskName}}</td>
         <td>{{task.priority}}</td>

@@ -1,0 +1,14 @@
+<div class="toolbar form-group row">
+  <div *ngIf="!hideSearch" class="col-md-6" >
+    <input type="text" [ngModel]="searchText" (ngModelChange)="onSearch($event)"
+            class="form-control" placeholder="Search" />
+  </div> 
+  <div class="col-md-6">
+    <label class="sort-label">Sort By:</label>
+    <div class="btn-group">
+      <ng-container *ngFor="let column of columns">
+          <button class="btn btn-outline-primary" (click)="sortClick(column)" type="button">{{column.displayName}}</button>
+      </ng-container>      
+    </div>
+  </div>       
+</div>

@@ -3,12 +3,15 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'search'
 })
 export class SearchFilter implements PipeTransform {
-  transform(items: any[], searchText: string): any[] {
+  transform(items: any[], args?: any): any[] {
     if(!items) return [];
-    if(!searchText) return items;
-    searchText = searchText.toLowerCase();
-    return items.filter( it => {
-      return it.toLowerCase().includes(searchText);
+
+    if(!args || (args && (!args.searchText || !args.propertyName))) return items;
+
+    const searchText = args.searchText.toLowerCase();
+    const propertyName = args.propertyName;
+    return items.filter(item => {
+      return item[propertyName] && item[propertyName].toLowerCase().includes(searchText);
     });
    }
 }

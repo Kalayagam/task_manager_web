@@ -1,4 +1,9 @@
 <div class="col-md-12 topPadding table-responsive">
+    <app-toolbar 
+      [columns]="toolbarColumns" 
+      (search)="searchText = $event" 
+      (sortBy)="sortBy = $event">
+    </app-toolbar>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -10,15 +15,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let project of projects">
+        <tr *ngFor="let project of projects | 
+                        search : { searchText: searchText, propertyName: searchBy } | 
+                        orderBy: { property: sortBy, direction: sortDirection }">
           <td>{{project.projectName}}</td>
           <td>{{project.totalNumberOfTasks}}</td>
           <td>{{project.numberOfTasksCompleted}}</td>
           <td>{{project.startDate | date:'dd/MM/yyyy'}}</td>
           <td>{{project.endDate | date:'dd/MM/yyyy'}}</td>
           <td *ngIf="!selectMode">
-            <button type="button" class="btn btn-primary" (click)="editProject(project)">Edit</button>
-            <button type="button" class="btn btn-danger leftMargin" (click)="deleteProject(project)">Delete</button>
+            <button type="button" class="btn btn-primary" (click)="editProject(project)">Update</button>
+            <button type="button" class="btn btn-danger leftMargin" (click)="deleteProject(project)">Suspend</button>
           </td>
           <td *ngIf="selectMode">
             <button type="button" class="btn btn-primary" (click)="selectProject(project)">Select</button>

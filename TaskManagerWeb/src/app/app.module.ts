@@ -27,6 +27,7 @@ import { SelectProjectComponent } from './components/project/select-project/sele
 import { SelectTaskComponent } from './components/task/select-task/select-task.component';
 import { SearchUserPipe } from './pipes/search-user.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { ToolbarComponent } from './components/core/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     SelectProjectComponent,
     SelectTaskComponent,
     SearchUserPipe,
-    OrderByPipe
+    OrderByPipe,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import { ProjectService } from 'src/app/services/project.service';
 import { SelectUserComponent } from '../../user/select-user/select-user.component';
 
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
-  styleUrls: ['./add-project.component.css']
+  styleUrls: ['./add-project.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AddProjectComponent implements OnInit { 
 
@@ -23,6 +24,9 @@ export class AddProjectComponent implements OnInit {
   submitBtnText: string = 'Add'
   resetBtnText: string = 'Reset';
   showDateRange: boolean = false;
+  modalOptions: NgbModalOptions = {
+    windowClass: 'modal-medium'
+  }
   private _mode: string;
 
   get mode() {
@@ -37,7 +41,7 @@ export class AddProjectComponent implements OnInit {
   } 
 
   searchUser() {
-    const modalRef = this.modalService.open(SelectUserComponent);
+    const modalRef = this.modalService.open(SelectUserComponent, this.modalOptions);
     
     modalRef.result.then((user) => {
       this.project.userName = `${user.firstName} ${user.lastName}`;

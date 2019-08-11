@@ -14,12 +14,14 @@ export class ViewUserComponent implements OnInit {
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
 
   searchText: string = null;
+  toolbarColumns: any[];
   sortBy: string = 'employeeId';
   sortDirection: number = 1;
 
   constructor() { }
 
   ngOnInit() {
+    this.configureToolbarColumns();
   }
 
   
@@ -33,6 +35,14 @@ export class ViewUserComponent implements OnInit {
 
   editUser(user) {
     this.edit.emit(user)
+  }
+
+  private configureToolbarColumns() {
+    this.toolbarColumns = [
+      { displayName: 'First Name', propertyName: 'firstName'},
+      { displayName: 'Last Name', propertyName: 'lastName'},
+      { displayName: 'Id', propertyName: 'employeeId'}
+    ]
   }
 
 }
