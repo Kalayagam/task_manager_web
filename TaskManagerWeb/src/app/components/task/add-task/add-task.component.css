@@ -43,3 +43,7 @@
   .addTaskComponent label {
     font-size: 20px;
   }
+
+  .modal-medium .modal-dialog {
+    max-width: 900px;
+  }

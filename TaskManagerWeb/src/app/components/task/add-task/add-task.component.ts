@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { TaskManagerServiceService } from "../../../services/task-manager-service.service";
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { SelectUserComponent } from '../../user/select-user/select-user.component';
 import { SelectProjectComponent } from '../../project/select-project/select-project.component';
 import { SelectTaskComponent } from '../select-task/select-task.component';
@@ -9,7 +9,8 @@ import { SelectTaskComponent } from '../select-task/select-task.component';
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css']
+  styleUrls: ['./add-task.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AddTaskComponent implements OnInit {
   @Input() mode: string = 'Add';
@@ -18,6 +19,9 @@ export class AddTaskComponent implements OnInit {
   selectedParentTask: any = {};
   selectedProject: any = {};
   selectedUser: any = {};
+  modalOptions: NgbModalOptions = {
+    windowClass: 'modal-medium'
+  }
 
   constructor(private taskManagerServiceService: TaskManagerServiceService,
               private router: Router,
@@ -30,7 +34,7 @@ export class AddTaskComponent implements OnInit {
   }
 
   searchParentTask() {
-    const modalRef = this.modalService.open(SelectTaskComponent);
+    const modalRef = this.modalService.open(SelectTaskComponent, this.modalOptions);
     
     modalRef.result.then((parentTask) => {
       this.selectedParentTask = parentTask;
@@ -39,7 +43,7 @@ export class AddTaskComponent implements OnInit {
   }
 
   searchProject() {
-    const modalRef = this.modalService.open(SelectProjectComponent);
+    const modalRef = this.modalService.open(SelectProjectComponent, this.modalOptions);
     
     modalRef.result.then((project) => {
       this.selectedProject = project;
@@ -48,7 +52,7 @@ export class AddTaskComponent implements OnInit {
   }
 
   searchUser() {
-    const modalRef = this.modalService.open(SelectUserComponent);
+    const modalRef = this.modalService.open(SelectUserComponent, this.modalOptions);
     
     modalRef.result.then((user) => {
       this.selectedUser = user;
@@ -84,7 +88,7 @@ export class AddTaskComponent implements OnInit {
       priority: 5,
       startDate: '',
       endDate: '',
-      isParentTask: false;
+      isParentTask: false
     }
   } 
 }
